@@ -65,11 +65,32 @@ class Ball(Basic):
     def draw(self, surface):
         pygame.draw.ellipse(surface, self.color, self.rect)
 
-    def collide_block(self, blocks: list):
-        # ============================================
-        # TODO: Implement an event when the ball hits a block
-        pass
+    def break_effect(self, block):    
+        for _ in range(5):
+            block.color = (255, 255, 255)  # 하얀색으로 깜빡임
+            pygame.time.delay(30)  # 잠시 멈춤
+            block.color = (0, 0, 0) 
 
+    def collide_block(self, blocks: list):
+        for block in blocks:
+            if block.alive and self.rect.colliderect(block.rect):
+
+                if abs(self.rect.bottom - block.rect.top) < 5 and self.dir > 180:
+                   
+                    self.dir = 360 - self.dir
+                elif abs(self.rect.top - block.rect.bottom) < 5 and self.dir < 180:
+                    
+                    self.dir = 360 - self.dir
+                elif abs(self.rect.right - block.rect.left) < 5:
+                    
+                    self.dir = 180 - self.dir
+                elif abs(self.rect.left - block.rect.right) < 5:
+                   
+                    self.dir = 180 - self.dir
+          
+                self.dir += random.randint(-5, 5)
+                break  
+            
     def collide_paddle(self, paddle: Paddle) -> None:
         if self.rect.colliderect(paddle.rect):
             self.dir = 360 - self.dir + random.randint(-5, 5)

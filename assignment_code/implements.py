@@ -36,8 +36,15 @@ class Block(Basic):
     def collide(self):
         # ============================================
         # TODO: Implement an event when block collides with a ball
-        pass
-
+        if self.color in config.colors:
+            current_index = config.colors.index(self.color)
+            if current_index < config.collision_limit:
+                # 다음 색상으로 업데이트
+                self.color = config.colors[current_index + 1]
+            else:
+                # 충돌 횟수가 한도를 넘어가면 블록을 제거
+                self.alive = False
+                
 
 class Paddle(Basic):
     def __init__(self):
@@ -65,16 +72,11 @@ class Ball(Basic):
     def draw(self, surface):
         pygame.draw.ellipse(surface, self.color, self.rect)
 
-    def break_effect(self, block):    
-        for _ in range(5):
-            block.color = (255, 255, 255)  # 하얀색으로 깜빡임
-            pygame.time.delay(30)  # 잠시 멈춤
-            block.color = (0, 0, 0) 
 
     def collide_block(self, blocks: list):
         for block in blocks:
             if block.alive and self.rect.colliderect(block.rect):
-
+                block.collide()
                 if abs(self.rect.bottom - block.rect.top) < 5 and self.dir > 180:
                    
                     self.dir = 360 - self.dir

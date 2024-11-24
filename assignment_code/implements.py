@@ -85,4 +85,12 @@ class Ball(Basic):
     def alive(self):
         # ============================================
         # TODO: Implement a service that returns whether the ball is alive or not
-        pass
+        if self.rect.bottom >= config.display_dimension[1]:
+            config.life -= 1
+            
+            if config.life > 0:
+                return True  
+            else:
+                return False  
+        return True  
+        

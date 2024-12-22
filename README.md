@@ -2,10 +2,11 @@
 
 </br>
 <b> ⚙️게임 작동 방법 ⚙️ </b></h3>
-</br>
+</br></br>
 기본이동기 : 방향키 
 
-![image](https://github.com/user-attachments/assets/c47e5a1a-7909-422d-bfb8-445441801bb2)
+![image](https://github.com/user-attachments/assets/4a716f79-b6ec-4b4e-899d-1fdfed9ca2cb)
+
 
 </br></br>
 기본 Life : 3

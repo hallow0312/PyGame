@@ -25,7 +25,7 @@ Life 가 0이 되기전까지 모든 블록을 깨부수는게 이게임의 플�
 <img src="https://github.com/user-attachments/assets/9cc28ad1-a7aa-411f-b365-f7ae45daf606" width="100px;" alt=""/>
 </br>
 &nbsp; jinohpark371
-</br>
+</br></br>
 <b> ⚙️Project Manager⚙️ </b></h3>
 </br>
 <img src="https://github.com/user-attachments/assets/b5e59ce3-2424-4c10-930c-328e907b8127" width="100px;" alt=""/>

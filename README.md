@@ -22,6 +22,5 @@ Life 가 0이 되기전까지 모든 블록을 깨부수는게 이게임의 플�
 </br>
 <b> ⚙️Contributor⚙️ </b></h3>
 </br>
- <td align="center"><a href="https://github.com/jinohpark371"><img src="![image](https://github.com/user-attachments/assets/ba8d967e-8f1b-45ae-9166-8a63079a5b76)
-" width="100px;" alt=""/>
+ <td align="center"><a href="https://github.com/jinohpark371"><img src="![image](https://github.com/user-attachments/assets/ba8d967e-8f1b-45ae-9166-8a63079a5b76)" width="100px;" alt=""/>
 

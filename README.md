@@ -11,6 +11,7 @@
 </br>
 Life 가 0이 되기전까지 모든 블록을 깨부수는게 이게임의 플레이방법입니다
 </br>
+<b> ⚙️게임 플레이 화면 ⚙️ </b></h3>
 ![image](https://github.com/user-attachments/assets/30bf2dfe-e20c-42bb-8d5e-0fb0f670e4f8)
 
 <b> Stack </b>

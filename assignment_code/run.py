@@ -1,9 +1,9 @@
 import sys
-from implements import Basic, Block, Paddle, Ball
+from implements import Basic, Block, Paddle, Ball, ItemBall  # ItemBall을 import
 import config
 
 import pygame
-from pygame.locals import QUIT, Rect, K_ESCAPE, K_SPACE 
+from pygame.locals import QUIT, Rect, K_ESCAPE, K_SPACE
 
 
 pygame.init()
@@ -15,7 +15,7 @@ fps_clock = pygame.time.Clock()
 paddle = Paddle()
 ball1 = Ball()
 BLOCKS = []
-ITEMS = []
+ITEMS = []  # 아이템 리스트
 BALLS = [ball1]
 life = config.life
 start = False
@@ -42,8 +42,9 @@ def tick():
     global ITEMS
     global BALLS
     global paddle
-    global ball1
+    global ball
     global start
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -63,12 +64,13 @@ def tick():
             ball.rect.centerx = paddle.rect.centerx
             ball.rect.bottom = paddle.rect.top
 
-        ball.collide_block(BLOCKS)
+        ball.collide_block(BLOCKS, ITEMS)
         ball.collide_paddle(paddle)
         ball.hit_wall()
-        if ball.alive() == False:
+        if not ball.alive():
             BALLS.remove(ball)
 
+    
 
 def main():
     global life
@@ -116,6 +118,15 @@ def main():
                 ball.draw(surface)
             for block in BLOCKS:
                 block.draw(surface)
+        # 아이템 이동 및 충돌 처리
+        for item in ITEMS:
+            item.move()  # 아이템 이동
+            item.draw(surface)  # 아이템을 화면에 그리기
+            if item.rect.colliderect(paddle.rect):  # 패들과 충돌
+                ITEMS.remove(item)  # 패들과 충돌 시 아이템 제거
+            elif item.rect.top > config.display_dimension[1]:  # 화면 아래로 사라진 경우
+                ITEMS.remove(item)  # 화면을 벗어난 아이템 제거
+            item.draw(surface)  # 아이템을 화면에 그리기
 
         pygame.display.update()
         fps_clock.tick(config.fps)

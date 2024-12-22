@@ -12,7 +12,7 @@ surface = pygame.display.set_mode(config.display_dimension)
 
 fps_clock = pygame.time.Clock()
 
-paddle = Paddle()
+paddle = Paddle() 
 ball1 = Ball()
 BLOCKS = []
 ITEMS = []  # 아이템 리스트
@@ -65,7 +65,7 @@ def tick():
             ball.rect.bottom = paddle.rect.top
 
         ball.collide_block(BLOCKS, ITEMS)
-        ball.collide_paddle(paddle)
+        ball.collide_paddle(paddle, BALLS)
         ball.hit_wall()
         if not ball.alive():
             BALLS.remove(ball)
@@ -120,14 +120,14 @@ def main():
                 block.draw(surface)
         # 아이템 이동 및 충돌 처리
         for item in ITEMS:
-            item.move()  # 아이템 이동
-            item.draw(surface)  # 아이템을 화면에 그리기
-            if item.rect.colliderect(paddle.rect):  # 패들과 충돌
-                ITEMS.remove(item)  # 패들과 충돌 시 아이템 제거
-            elif item.rect.top > config.display_dimension[1]:  # 화면 아래로 사라진 경우
-                ITEMS.remove(item)  # 화면을 벗어난 아이템 제거
-            item.draw(surface)  # 아이템을 화면에 그리기
-
+          item.move()  # 아이템 이동
+          item.draw(surface)  # 아이템을 화면에 그리기
+          item.collide_paddle(paddle, BALLS)  # 빨간색 공이 패들과 충돌했을 때 공을 하나 더 추가
+          if item.rect.colliderect(paddle.rect):  # 패들과 충돌 시 아이템 제거
+              ITEMS.remove(item)  
+          elif item.rect.top > config.display_dimension[1]:  # 화면 아래로 사라진 경우
+              ITEMS.remove(item)  # 화면을 벗어난 아이템 제거
+          item.draw(surface)  # 아이템을 화면에 그리기
         pygame.display.update()
         fps_clock.tick(config.fps)
 

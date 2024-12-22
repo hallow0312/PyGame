@@ -68,9 +68,24 @@ class Ball(Basic):
                         self.dir = 180 - self.dir  # 좌우 벽에서 반사
                 break
 
-    def collide_paddle(self, paddle: Paddle) -> None:
-        if self.rect.colliderect(paddle.rect):
-            self.dir = 360 - self.dir + random.randint(-5, 5)
+    def collide_paddle(self, paddle, BALLS):
+        if self.rect.colliderect(paddle.rect):  # 공과 패들 충돌 처리
+          if self.color == (255, 0, 0):  # 빨간색 공일 때
+              BALLS.append(Ball(pos=(paddle.rect.centerx, paddle.rect.top - 10)))  # 새로운 공을 패들 위에 생성
+          self.rect.bottom = paddle.rect.top  # 공이 패들 위로 올라가도록 위치 조정
+          # 공이 패들과 충돌 시 방향을 반전하고 약간 랜덤하게 변화
+          self.dir = 360 - self.dir + random.randint(-5, 5)
+          if self in ITEMS:
+              ITEMS.remove(self)  # 아이템 제거
+
+    def adjust_direction(self, paddle):
+        # 공이 패들과 충돌하면 패들이 위치한 방향으로 공을 이동시킴
+        if self.rect.centerx > paddle.rect.centerx:
+            # 오른쪽 방향으로 벗어나면, 왼쪽으로
+            self.dir += random.randint(0, 45)  # 약간의 랜덤성 추가
+        else:
+            # 왼쪽 방향으로 벗어나면, 오른쪽으로
+            self.dir -= random.randint(0, 45)  # 약간의 랜덤성 추가
 
     def hit_wall(self):
         # 좌우 벽 충돌
@@ -82,7 +97,7 @@ class Ball(Basic):
         if self.rect.top <= 0:
             self.dir = -self.dir  # 상단 벽에서 반사
             self.rect.clamp_ip(Rect(0, 0, config.display_dimension[0], config.display_dimension[1]))
-    
+
     def alive(self):
         # 공이 화면 밖으로 빠져나갔으므로 False 반환
         if self.rect.top > config.display_dimension[1]:
@@ -109,10 +124,21 @@ class ItemBall(Ball):  # Ball을 상속받아서 아이템용 클래스를 확�
         else:
             self.kill()  # 아이템이 화면 밖으로 나가면 제거
 
-    def kill(self):
+    def kill(self):  
         # 아이템이 화면 밖으로 나가면 목록에서 제거
         if self in ITEMS:
             ITEMS.remove(self)
+
+    def collide_paddle(self, paddle: Paddle, balls: list):  # 패들과 충돌 시 공을 하나 더 추가
+      if self.rect.colliderect(paddle.rect):  # 패들과 충돌했을 때
+          if self.color == (255, 0, 0):  # 빨간색 공을 먹었을 때만
+              new_ball = Ball(pos=(paddle.rect.centerx, paddle.rect.top - 10))  # 새로운 공 생성
+              balls.append(new_ball)  # 새로운 공을 balls 리스트에 추가
+
+          if self in ITEMS:  # self가 ITEMS에 있는지 확인
+              ITEMS.remove(self)  # 아이템 제거
+
+
 
 
 class Block(Basic):
@@ -132,4 +158,3 @@ class Block(Basic):
             item_color = (255, 0, 0) if random.random() < 0.5 else (0, 0, 255)  # 빨강/파랑
             item = ItemBall(item_color, self.rect.center)  # ItemBall 클래스를 사용하여 아이템 생성
             items.append(item)
-            print(f"아이템 생성됨: 위치 = {self.rect.center}, 색상 = {item_color}")  # 디버깅 출력

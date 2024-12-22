@@ -7,7 +7,6 @@
 </br>공 발사 : Key Space
 
 ![image](https://github.com/user-attachments/assets/515267fe-f573-4bb4-b702-2cea03860856)
-
 </br>기본 Life ❤️❤️: 3
 </br>Life 가 0이 되기전까지 모든 블록을 깨부수는게 이게임의 플레이방법입니다
 </br></br>

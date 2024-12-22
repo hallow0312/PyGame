@@ -5,11 +5,10 @@
 </br></br>
 기본이동기 : 방향키 
 
-![image](https://github.com/user-attachments/assets/4a716f79-b6ec-4b4e-899d-1fdfed9ca2cb)
-
+![image](https://github.com/user-attachments/assets/515267fe-f573-4bb4-b702-2cea03860856)
 
 </br></br>
-기본 Life : 3
+기본 Life ❤️❤️: 3
 
 Life 가 0이 되기전까지 모든 블록을 깨부수는게 이게임의 플레이방법입니다
 </br>

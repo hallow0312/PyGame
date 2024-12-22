@@ -4,7 +4,9 @@
 <b> ⚙️게임 작동 방법 ⚙️ </b></h3>
 </br>
 기본이동기 : 방향키 
-![image](https://github.com/user-attachments/assets/29880ba1-2355-4ad8-bade-d7b31d7ab5eb)
+
+![image](https://github.com/user-attachments/assets/c47e5a1a-7909-422d-bfb8-445441801bb2)
+
 </br></br>
 기본 Life : 3
 

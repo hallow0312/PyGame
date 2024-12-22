@@ -4,7 +4,8 @@
 <b> ⚙️게임 작동 방법 ⚙️ </b></h3>
 </br>
 기본이동기 : 방향키 
-</br>
+![image](https://github.com/user-attachments/assets/29880ba1-2355-4ad8-bade-d7b31d7ab5eb)
+</br></br>
 기본 Life : 3
 
 Life 가 0이 되기전까지 모든 블록을 깨부수는게 이게임의 플레이방법입니다
